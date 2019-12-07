@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 
 public class HMnoteActivity extends AppCompatActivity {
 
@@ -19,6 +19,7 @@ public class HMnoteActivity extends AppCompatActivity {
 
         //declaring layout components
         topBar = findViewById(R.id.topBar);
+        setSupportActionBar(topBar);
         titleList = findViewById(R.id.titleList);
         weatherBar = findViewById(R.id.weatherBar);
     }
