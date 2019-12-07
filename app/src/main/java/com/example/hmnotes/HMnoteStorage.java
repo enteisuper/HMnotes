@@ -12,7 +12,7 @@ public class HMnoteStorage extends SQLiteOpenHelper {
 
     static final String TABLE_NAME = "storage";
     static final String COL_ID = "id";
-    static final String COL_TITLE = "title";
+    static final String COL_SUBJECT = "subject";
     static final String COL_DETAIL = "detail";
     static final String COL_CREATE_DATE = "create_date";
     static final String COL_CREATE_TIME = "create_time";
@@ -26,7 +26,7 @@ public class HMnoteStorage extends SQLiteOpenHelper {
         //initializing database schema
         String sqlCommand = "CREATE TABLE " + TABLE_NAME +
                 "(" + COL_ID + " INT PRIMARY KEY, " +
-                COL_TITLE + " TEXT, " + COL_DETAIL + " TEXT, " +
+                COL_SUBJECT + " TEXT, " + COL_DETAIL + " TEXT, " +
                 COL_CREATE_DATE + " TEXT, " + COL_CREATE_TIME + " TEXT)";
         noteStorage.execSQL(sqlCommand);
     }
