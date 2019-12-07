@@ -23,6 +23,7 @@ public class HMnoteStorage extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase noteStorage) {
 
+        //initializing database schema
         String sqlCommand = "CREATE TABLE " + TABLE_NAME +
                 "(" + COL_ID + " INT PRIMARY KEY, " +
                 COL_TITLE + " TEXT, " + COL_DETAIL + " TEXT, " +
@@ -35,6 +36,7 @@ public class HMnoteStorage extends SQLiteOpenHelper {
         if (updatedVersion <= previousVersion) {
             return;
         }
+        //delete all of the database
         noteStorage.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(noteStorage);
 
