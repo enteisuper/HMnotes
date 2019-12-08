@@ -21,7 +21,7 @@ import java.util.List;
 public class HMnoteActivity extends AppCompatActivity {
     Toolbar topBar;
     RecyclerView titeListView;
-    Toolbar weatherBar;
+    TextView weatherBar;
     HMnoteAdapter noteAdapter;
     HMnoteStorage noteStorage;
 
