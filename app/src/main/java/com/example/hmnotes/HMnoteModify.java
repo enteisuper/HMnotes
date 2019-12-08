@@ -29,9 +29,9 @@ public class HMnoteModify extends AppCompatActivity {
         System.out.println("made it");
         setContentView(R.layout.note_modify);
         topBar = findViewById(R.id.topBar);
-        setSupportActionBar(topBar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        //setSupportActionBar(topBar);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setHomeButtonEnabled(true);
 
         Intent intent = getIntent();
         noteID = intent.getLongExtra("noteid", 0);
@@ -41,28 +41,32 @@ public class HMnoteModify extends AppCompatActivity {
         final String noteSubject = object.getSubject();
         String noteBody = object.getDetail();
         textSubject = findViewById(R.id.noteSubject);
+        System.out.println("TEXTSUBJECT ===== " + textSubject);
         textBody = findViewById(R.id.noteBody);
-        textSubject.addTextChangedListener(new TextWatcher() {
+        System.out.println("TEXTBODY ===== " + textBody);
+        TextWatcher textWatcher = new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence charSequence, int numOne,
                                       int numTwo, int numThree) {
-                if (charSequence.length() > 0) {
-                    getSupportActionBar().setTitle(charSequence);
-                }
+                /* if (charSequence.length() > 0) {
+                    //getSupportActionBar().setTitle(charSequence);
+                } */
             }
 
             @Override
             public void beforeTextChanged(CharSequence charSequence,
                                           int numOne, int numTwo, int numThree) {
-                getSupportActionBar().setTitle(noteSubject);
+                //getSupportActionBar().setTitle(noteSubject);
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
 
             }
-        });
-
+        };
+        if (textWatcher != null) {
+            textSubject.addTextChangedListener(textWatcher);
+        }
         textSubject.setText(noteSubject);
         textBody.setText(noteBody);
 

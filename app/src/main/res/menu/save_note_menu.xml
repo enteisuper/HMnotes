@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/deleteNote"
-        android:icon="@android:drawable/ic_media_previous"
+        android:icon="@android:drawable/ic_menu_delete"
         android:title="DeleteNote"
         app:showAsAction="always" />
     <item
