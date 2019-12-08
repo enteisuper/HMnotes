@@ -28,8 +28,10 @@
                 android:id="@+id/secondContraintLayout"
                 android:layout_width="398dp"
                 android:layout_height="114dp"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="2dp">
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/textSubject"
@@ -37,16 +39,18 @@
                     android:layout_height="40dp"
                     android:text="Subject"
                     android:textSize="30sp"
-                    tools:layout_editor_absoluteX="18dp"
-                    tools:layout_editor_absoluteY="16dp" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textDate"
-                    android:layout_width="374dp"
-                    android:layout_height="33dp"
+                    android:layout_width="352dp"
+                    android:layout_height="36dp"
                     android:text="Date"
-                    tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="65dp" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textSubject" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

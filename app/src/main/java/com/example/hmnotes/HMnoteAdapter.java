@@ -28,8 +28,7 @@ public class HMnoteAdapter extends RecyclerView.Adapter<ViewNotesTitleHolder> {
     @Override
     public ViewNotesTitleHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View addingView = inflater.inflate(R.layout.list_view, parent, false);
-        return new ViewNotesTitleHolder(addingView) {
-        };
+        return new ViewNotesTitleHolder(addingView);
     }
 
     @Override
@@ -45,11 +44,13 @@ public class HMnoteAdapter extends RecyclerView.Adapter<ViewNotesTitleHolder> {
         holder.textDate.setText(createDate);
         holder.textSubject.setText(subject);
         holder.noteid = noteid;
+        System.out.println("display noteid ===== " + noteid + "    : SUBJECT ====== " + subject);
     }
 
 
     @Override
     public int getItemCount() {
+        System.out.println("GETITEMCOUNT ===== " + notes.size());
         return notes.size();
     }
 }
