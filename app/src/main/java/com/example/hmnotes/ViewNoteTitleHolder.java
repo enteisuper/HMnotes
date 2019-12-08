@@ -8,12 +8,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 //creating viewholder class to hold and create the front page of titles and dates
-public class ViewNotesTitleHolder extends RecyclerView.ViewHolder {
+public class ViewNoteTitleHolder extends RecyclerView.ViewHolder {
     long noteid;
     TextView textSubject;
     TextView textDate;
 
-    public ViewNotesTitleHolder(@NonNull final View view) {
+    public ViewNoteTitleHolder(@NonNull final View view) {
         super(view);
         textSubject = view.findViewById(R.id.textSubject);
         textDate = view.findViewById(R.id.textDate);
