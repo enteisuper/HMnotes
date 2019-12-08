@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.*;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 //Creates a new Note to display
@@ -31,7 +30,7 @@ public class CreateNewNoteActivity extends AppCompatActivity {
 
         //setting display for topbar
         topBar = findViewById(R.id.topBar);
-        setSupportActionBar(topBar);
+        //setSupportActionBar(topBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Write a note");
 
@@ -70,7 +69,7 @@ public class CreateNewNoteActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater newMenuInflator = getMenuInflater();
-        newMenuInflator.inflate(R.menu.edit_note_menu, menu);
+        newMenuInflator.inflate(R.menu.save_note_menu, menu);
         return true;
     }
 
@@ -89,18 +88,19 @@ public class CreateNewNoteActivity extends AppCompatActivity {
 
         //checking if save button is clicked
         if (menuItem.getItemId() == R.id.addNote) {
+            System.out.println("SAVING ======== ");
             //making sure there is something to add
             if (noteSubject.getText().length() > 0) {
-                HMnoteObject addingNote = new HMnoteObject(noteSubject.getText().toString(),
+                HMnoteObject newNote = new HMnoteObject(noteSubject.getText().toString(),
                         noteSubject.getText().toString(), date, time);
                 HMnoteStorage noteStorage = new HMnoteStorage(this);
-                long noteid = noteStorage.creatingNote(addingNote);
+                long noteid = noteStorage.writeNote(newNote);
                 HMnoteObject object = noteStorage.getNoteByID(noteid);
-
+                System.out.println("SAVE NOTEID ======== " + noteid);
                 //hit back button
                 onBackPressed();
 
-                if (!object.getSubject().equals(addingNote.getSubject())) {
+                if (!object.getSubject().equals(newNote.getSubject())) {
                     Toast.makeText(this, "Your Note Failed To Save",
                             Toast.LENGTH_LONG).show();
                 }   else {

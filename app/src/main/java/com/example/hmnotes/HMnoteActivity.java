@@ -20,10 +20,9 @@ import java.util.List;
 //https://developer.android.com/reference/android/support/v7/app/AppCompatActivity
 public class HMnoteActivity extends AppCompatActivity {
     Toolbar topBar;
-    RecyclerView titleList;
+    RecyclerView titeListView;
     Toolbar weatherBar;
     HMnoteAdapter noteAdapter;
-    RecyclerView recyclerView;
     HMnoteStorage noteStorage;
 
     @Override
@@ -34,7 +33,7 @@ public class HMnoteActivity extends AppCompatActivity {
         //declaring layout components
         topBar = findViewById(R.id.toolbar);
         //setSupportActionBar(topBar);
-        titleList = findViewById(R.id.titleList);
+        titeListView = findViewById(R.id.titleList);
         TextView emptyText = findViewById(R.id.emptyText);
         emptyText.setVisibility(View.GONE);
         noteStorage = new HMnoteStorage(this);
@@ -53,9 +52,9 @@ public class HMnoteActivity extends AppCompatActivity {
     }
 
     public void showList(List<HMnoteObject> noteList) {
-        titleList.setLayoutManager(new LinearLayoutManager(this));
+        titeListView.setLayoutManager(new LinearLayoutManager(this));
         noteAdapter = new HMnoteAdapter(this, noteList);
-        recyclerView.setAdapter(noteAdapter);
+        titeListView.setAdapter(noteAdapter);
     }
 
     @Override

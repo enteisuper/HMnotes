@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class HMnoteAdapter extends RecyclerView.Adapter {
+public class HMnoteAdapter extends RecyclerView.Adapter<ViewNotesTitleHolder> {
 
     private LayoutInflater inflater;
     private List<HMnoteObject> notes;
@@ -24,52 +24,35 @@ public class HMnoteAdapter extends RecyclerView.Adapter {
         notes = setNotes;
     }
 
-    //creating viewholder class to hold and create the front page of titles and dates
-    public class ViewTitleDates extends RecyclerView.ViewHolder {
-        TextView textSubject;
-        TextView textDate;
-
-        public ViewTitleDates(@NonNull final View view) {
-            super(view);
-            textSubject = view.findViewById(R.id.textSubject);
-            textDate = view.findViewById(R.id.textDate);
-            //
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //Storing intent for the body to be used later on
-                    Intent intent = new Intent(view.getContext(), HMnoteModify.class);
-                    intent.putExtra("noteid", notes.get(getAdapterPosition()).getId());
-                    view.getContext().startActivity(intent);
-                }
-            });
-        }
-    }
-
-
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewNotesTitleHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View addingView = inflater.inflate(R.layout.list_view, parent, false);
-        return new RecyclerView.ViewHolder(addingView) {
+        return new ViewNotesTitleHolder(addingView) {
         };
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewNotesTitleHolder holder, int position) {
         //recast so parameters can be used
-        ViewTitleDates titleDates = (ViewTitleDates) holder;
+        //ViewNotesTitleHolder titleDates = (ViewNotesTitleHolder) holder;
 
         String subject = notes.get(position).getSubject();
         String createDate= notes.get(position).getCreateDate();
         long noteid = notes.get(position).getId();
 
-        titleDates.textDate.setText(createDate);
-        titleDates.textSubject.setText(subject);
+
+        holder.textDate.setText(createDate);
+        holder.textSubject.setText(subject);
+        holder.noteid = noteid;
     }
+
 
     @Override
     public int getItemCount() {
         return notes.size();
     }
 }
+
+
+
