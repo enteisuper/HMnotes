@@ -93,13 +93,15 @@ public class HMnoteModify extends AppCompatActivity {
             HMnoteObject object = new HMnoteObject(noteID, textSubject.getText().toString(),
                     textBody.getText().toString(), date, time);
             HMnoteStorage noteStorage = new HMnoteStorage(getApplicationContext());
+            noteStorage.modifyNote(object);
 
             //going back to main layout
             Intent intent = new Intent(this, HMnoteActivity.class);
             startActivity(intent);
+            Toast.makeText(this, "Note Has Been Modified", Toast.LENGTH_LONG).show();
         }   else if (menuItem.getItemId() == R.id.deleteNote) {
             //if delete button is pressed
-            Toast.makeText(this, "Note Deleted", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Note Canceled", Toast.LENGTH_LONG).show();
             onBackPressed();
         }
         return super.onOptionsItemSelected(menuItem);

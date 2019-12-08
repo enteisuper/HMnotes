@@ -22,33 +22,30 @@
         android:id="@+id/noteSubject"
         android:layout_width="372dp"
         android:layout_height="49dp"
-        android:layout_marginTop="140dp"
         android:ems="10"
         android:hint="Enter Title"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/noteBody"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.589"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/noteBody"
         style="@style/Widget.AppCompat.AutoCompleteTextView"
-        android:layout_width="363dp"
-        android:layout_height="535dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="379dp"
+        android:layout_height="562dp"
         android:background="@null"
         android:ems="10"
-        android:gravity="start|top"
+        android:foregroundGravity="bottom"
+        android:gravity="top"
         android:hint="Enter Details"
         android:inputType="textMultiLine"
         android:textColorHighlight="#FFFFFF"
         android:textColorLink="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.452"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/noteTitle"
-        app:layout_constraintVertical_bias="0.019" />
+        app:layout_constraintHorizontal_bias="0.718"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

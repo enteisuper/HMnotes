@@ -22,7 +22,7 @@ public class ViewNoteTitleHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 //Storing intent for the body to be used later on
-                Intent intent = new Intent(view.getContext(), HMnoteModify.class);
+                Intent intent = new Intent(view.getContext(), HMnoteBody.class);
                 intent.putExtra("noteid", noteid);
                 view.getContext().startActivity(intent);
             }

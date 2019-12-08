@@ -24,22 +24,24 @@ public class HMnoteBody extends AppCompatActivity {
         super.onCreate(saveState);
         setContentView(R.layout.note_body);
         Toolbar topBar =  findViewById(R.id.topBar);
-        //delete button
-        FloatingActionButton floatingDeleteButton = findViewById(R.id.floatingDeleteButton);
-        setSupportActionBar(topBar);
+
+        //setSupportActionBar(topBar);
 
         //picking up intent extras from adapter
         Intent intent = getIntent();
         noteid = intent.getLongExtra("noteid", 0);
         HMnoteStorage noteStorage = new HMnoteStorage(this);
         HMnoteObject object = noteStorage.getNoteByID(noteid);
-        getSupportActionBar().setTitle(object.getSubject());
+
+        //getSupportActionBar().setTitle(object.getSubject());
 
         TextView noteBody = findViewById(R.id.noteBody);
         noteBody.setText(object.getDetail());
         //details can be scrolled through if it's too long
         noteBody.setMovementMethod(new ScrollingMovementMethod());
 
+        //delete button
+        FloatingActionButton floatingDeleteButton = findViewById(R.id.floatingDeleteButton);
         floatingDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +53,7 @@ public class HMnoteBody extends AppCompatActivity {
                 toListView();
             }
         });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 

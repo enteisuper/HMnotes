@@ -22,6 +22,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.hmnotes.HMnoteActivity" />
         </activity>
+        <activity
+            android:name="com.example.hmnotes.HMnoteBody"
+            android:parentActivityName="com.example.hmnotes.HMnoteActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.hmnotes.HMnoteActivity" />
+        </activity>
     </application>
 
 </manifest>

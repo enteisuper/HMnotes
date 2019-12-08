@@ -43,8 +43,7 @@ public class HMnoteActivity extends AppCompatActivity {
             emptyText.setVisibility(View.VISIBLE);
         }   else {
             emptyText.setVisibility(View.GONE);
-
-
+            showList(noteList);
         }
 
 
