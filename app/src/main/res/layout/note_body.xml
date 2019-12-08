@@ -7,24 +7,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        layout="@layout/content_body"
+        android:layout_width="match_parent"
+        android:layout_height="676dp"
+        android:layout_gravity="bottom" />
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
 
         android:layout_width="match_parent"
-        android:layout_height="192dp"
+        android:layout_height="58dp"
         android:background="#00408F">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/topBar"
-            android:layout_width="match_parent"
+            android:layout_width="410dp"
             android:layout_height="wrap_content"
             android:background="#002685"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/floatingDeleteButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -32,7 +39,7 @@
         android:clickable="true"
         app:backgroundTint="#002EA3"
         app:rippleColor="#001C7A"
-        app:srcCompat="@android:drawable/ic_menu_edit"
+        app:srcCompat="@android:drawable/ic_menu_delete"
         tools:visibility="visible" />
 
 

@@ -37,8 +37,9 @@ public class HMnoteAdapter extends RecyclerView.Adapter {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    //Storing intent for the body to be used later on
                     Intent intent = new Intent(view.getContext(), HMnoteModify.class);
-                    intent.putExtra("ID", notes.get(getAdapterPosition()).getId());
+                    intent.putExtra("noteid", notes.get(getAdapterPosition()).getId());
                     view.getContext().startActivity(intent);
                 }
             });
