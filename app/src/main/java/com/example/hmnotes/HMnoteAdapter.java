@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 //import android.support.annotation.NonNull;
 //import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +24,26 @@ public class HMnoteAdapter extends RecyclerView.Adapter {
         notes = setNotes;
     }
 
+    //creating viewholder class to hold and create the front page of titles and dates
+    public class ViewTitleDates extends RecyclerView.ViewHolder {
+        TextView textSubject;
+        TextView textDate;
+
+        public ViewTitleDates(@NonNull final View view) {
+            super(view);
+            textSubject = view.findViewById(R.id.textSubject);
+            textDate = view.findViewById(R.id.textDate);
+            //
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), HMnoteBody)
+                }
+            });
+        }
+    }
+
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -34,8 +53,13 @@ public class HMnoteAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewTitleDates holder, int position) {
+        String subject = notes.get(position).getSubject();
+        String createDate= notes.get(position).getCreateDate();
+        long noteid = notes.get(position).getId();
 
+        holder.textDate.setText(createDate);
+        holder.textSubject.setText(subject);
     }
 
     @Override
