@@ -70,7 +70,7 @@ public class HMnoteActivity extends AppCompatActivity {
     @Override
     //if adding note is clicked
     public boolean onOptionsItemSelected(MenuItem menuItem) {
-        if (menuItem.getItemId() == R.id.addNote) {
+        if (menuItem.getItemId() == R.id.createNew) {
             //showing user that a note is being created
             Toast.makeText(this, "Adding Note", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, CreateNewNoteActivity.class);
