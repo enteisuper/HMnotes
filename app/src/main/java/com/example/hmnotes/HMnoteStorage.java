@@ -106,7 +106,7 @@ public class HMnoteStorage extends SQLiteOpenHelper {
     //retrieving all notes from database
     public List<HMnoteObject> retrieveAllNotes() {
         List<HMnoteObject> totalNotes = new ArrayList<>();
-        String SQLcommand = "Select * from " + DATABASE_NAME + "Order by " + COL_ID + " Desc";
+        String SQLcommand = "SELECT * FROM " + DATABASE_NAME + " ORDER BY " + COL_ID+" DESC";
         SQLiteDatabase noteStorage = this.getReadableDatabase();
         Cursor dataBaseCursor = noteStorage.rawQuery(SQLcommand, null);
 

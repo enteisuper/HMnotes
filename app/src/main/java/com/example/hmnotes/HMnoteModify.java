@@ -33,7 +33,7 @@ public class HMnoteModify extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
         Intent intent = getIntent();
-        noteID = intent.getLongExtra("ID", 0);
+        noteID = intent.getLongExtra("noteid", 0);
         HMnoteStorage noteStorage = new HMnoteStorage(this);
         HMnoteObject object = noteStorage.getNoteByID(noteID);
 

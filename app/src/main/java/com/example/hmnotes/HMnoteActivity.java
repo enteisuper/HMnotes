@@ -32,8 +32,8 @@ public class HMnoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //declaring layout components
-        topBar = findViewById(R.id.topBar);
-        setSupportActionBar(topBar);
+        topBar = findViewById(R.id.toolbar);
+        //setSupportActionBar(topBar);
         titleList = findViewById(R.id.titleList);
         TextView emptyText = findViewById(R.id.emptyText);
         emptyText.setVisibility(View.GONE);
