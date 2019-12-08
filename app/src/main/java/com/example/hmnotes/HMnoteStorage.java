@@ -13,7 +13,7 @@ import java.util.List;
 
 public class HMnoteStorage extends SQLiteOpenHelper {
 
-    private static final int versionNumber = 4;
+    private static final int versionNumber = 6;
     private static final String storageName = "HMnote";
 
     static final String DATABASE_NAME = "storage";
@@ -70,10 +70,7 @@ public class HMnoteStorage extends SQLiteOpenHelper {
     //retrieving the note from database
     public HMnoteObject getNoteByID(long noteid) {
 
-
-
-        retrieveAllNotes();
-
+        //retrieveAllNotes();
 
         SQLiteDatabase noteStorage = this.getReadableDatabase();
         String[] columns = new String[] {COL_ID, COL_SUBJECT, COL_DETAIL,
@@ -127,17 +124,24 @@ public class HMnoteStorage extends SQLiteOpenHelper {
         Cursor dataBaseCursor = noteStorage.rawQuery(SQLcommand, null);
 
         int position = 1;
-        while (dataBaseCursor.move(position)) {
-            System.out.println("CURSOR COLUMNS ===== " + dataBaseCursor.getColumnNames().toString());
-            HMnoteObject object = new HMnoteObject(
-                    Long.parseLong(dataBaseCursor.getString(0)),
-                    dataBaseCursor.getString(1),
-                    dataBaseCursor.getString(2),
-                    dataBaseCursor.getString(3),
-                    dataBaseCursor.getString(4)
-            );
-            totalNotes.add(object);
-            position += 1;
+        if (dataBaseCursor.moveToFirst()) {
+            while (true) {
+                System.out.println("CURSOR COLUMNS ===== " + dataBaseCursor.getColumnNames().toString());
+                HMnoteObject object = new HMnoteObject(
+                        Long.parseLong(dataBaseCursor.getString(0)),
+                        dataBaseCursor.getString(1),
+                        dataBaseCursor.getString(2),
+                        dataBaseCursor.getString(3),
+                        dataBaseCursor.getString(4)
+                );
+                totalNotes.add(object);
+                position += 1;
+
+                if (!dataBaseCursor.moveToNext()) {
+                    break;
+                }
+
+            }
         }
         System.out.println("RETRIEVE ALL NOTES ======= " + totalNotes.size());
         return totalNotes;
