@@ -1,7 +1,7 @@
 package com.example.hmnotes;
 
 public class HMnoteObject {
-    private int id;
+    private long id;
     private String subject;
     private String detail;
     private String createDate;
@@ -20,7 +20,7 @@ public class HMnoteObject {
     }
 
     //Full constructor
-    HMnoteObject(int setId, String setSubject, String setDetail, String setCreateDate,
+    HMnoteObject(long setId, String setSubject, String setDetail, String setCreateDate,
                  String setCreateTime) {
         id = setId;
         subject = setSubject;
@@ -29,7 +29,7 @@ public class HMnoteObject {
         createTime = setCreateTime;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

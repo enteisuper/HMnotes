@@ -1,8 +1,13 @@
 package com.example.hmnotes;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class HMnoteStorage extends SQLiteOpenHelper {
@@ -10,7 +15,7 @@ public class HMnoteStorage extends SQLiteOpenHelper {
     private static final int versionNumber = 1;
     private static final String storageName = "HMnote";
 
-    static final String TABLE_NAME = "storage";
+    static final String DATABASE_NAME = "storage";
     static final String COL_ID = "id";
     static final String COL_SUBJECT = "subject";
     static final String COL_DETAIL = "detail";
@@ -20,16 +25,6 @@ public class HMnoteStorage extends SQLiteOpenHelper {
     HMnoteStorage(Context context) {
         super(context, storageName, null, versionNumber);
     }
-    @Override
-    public void onCreate(SQLiteDatabase noteStorage) {
-
-        //initializing database schema
-        String sqlCommand = "CREATE TABLE " + TABLE_NAME +
-                "(" + COL_ID + " INT PRIMARY KEY, " +
-                COL_SUBJECT + " TEXT, " + COL_DETAIL + " TEXT, " +
-                COL_CREATE_DATE + " TEXT, " + COL_CREATE_TIME + " TEXT)";
-        noteStorage.execSQL(sqlCommand);
-    }
 
     @Override
     public void onUpgrade(SQLiteDatabase noteStorage, int previousVersion, int updatedVersion) {
@@ -37,8 +32,107 @@ public class HMnoteStorage extends SQLiteOpenHelper {
             return;
         }
         //delete all of the database
-        noteStorage.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        noteStorage.execSQL("DROP TABLE IF EXISTS " + DATABASE_NAME);
         onCreate(noteStorage);
 
     }
+
+    @Override
+    public void onCreate(SQLiteDatabase noteStorage) {
+
+        //initializing database schema
+        String sqlCommand = "CREATE TABLE " + DATABASE_NAME +
+                "(" + COL_ID + " INT PRIMARY KEY, " +
+                COL_SUBJECT + " TEXT, " + COL_DETAIL + " TEXT, " +
+                COL_CREATE_DATE + " TEXT, " + COL_CREATE_TIME + " TEXT)";
+        noteStorage.execSQL(sqlCommand);
+    }
+
+
+    //creating the note and adding to database
+    public long creatingNote(HMnoteObject note) {
+        SQLiteDatabase noteStorage = this.getWritableDatabase();
+        ContentValues row = new ContentValues();
+        //adding the note to the database
+        row.put(COL_CREATE_DATE, note.getCreateDate());
+        row.put(COL_CREATE_TIME, note.getCreateTime());
+        row.put(COL_SUBJECT, note.getSubject());
+        row.put(COL_DETAIL, note.getDetail());
+
+        long noteid = noteStorage.insert(DATABASE_NAME, null, row);
+        return noteid;
+    }
+
+
+    //retrieving the note from database
+    public HMnoteObject getNoteByID(long noteid) {
+        SQLiteDatabase noteStorage = this.getWritableDatabase();
+        String[] columns = new String[] {COL_ID, COL_SUBJECT, COL_DETAIL,
+                COL_CREATE_DATE, COL_CREATE_TIME};
+        Cursor dataBaseCursor = noteStorage.query(
+                DATABASE_NAME,
+                columns,
+                //looking for documents based on this id
+                COL_ID + "=?",
+                new String[] {String.valueOf(noteid)},
+                null, null, null, null);
+        if (dataBaseCursor != null) {
+            dataBaseCursor.move(0);
+
+        }
+
+        return new HMnoteObject(
+                Long.parseLong(dataBaseCursor.getString(0)),
+                dataBaseCursor.getString(1),
+                dataBaseCursor.getString(2),
+                dataBaseCursor.getString(3),
+                dataBaseCursor.getString(4)
+        );
+    }
+
+    //editing existing note
+    public int modifyNote(HMnoteObject note) {
+        SQLiteDatabase noteStorage = this.getWritableDatabase();
+        ContentValues row = new ContentValues();
+        row.put(COL_SUBJECT, note.getSubject());
+        row.put(COL_DETAIL, note.getDetail());
+        row.put(COL_CREATE_DATE, note.getCreateDate());
+        row.put(COL_CREATE_TIME, note.getCreateTime());
+
+        return noteStorage.update(DATABASE_NAME, row, COL_ID + "=?",
+                new String[] {String.valueOf(note.getId())});
+    }
+
+    //retrieving all notes from database
+    public List<HMnoteObject> retrieveAllNotes() {
+        List<HMnoteObject> totalNotes = new ArrayList<>();
+        String SQLcommand = "Select * from " + DATABASE_NAME + "Order by " + COL_ID + " Desc";
+        SQLiteDatabase noteStorage = this.getReadableDatabase();
+        Cursor dataBaseCursor = noteStorage.rawQuery(SQLcommand, null);
+
+        int position = 0;
+        while (dataBaseCursor.move(position)) {
+            HMnoteObject object = new HMnoteObject(
+                    Long.parseLong(dataBaseCursor.getString(0)),
+                    dataBaseCursor.getString(1),
+                    dataBaseCursor.getString(2),
+                    dataBaseCursor.getString(3),
+                    dataBaseCursor.getString(4)
+            );
+            totalNotes.add(object);
+            position += 1;
+        }
+        return totalNotes;
+    }
+
+
+    //delete the note
+    public void removeNote(long noteid) {
+        SQLiteDatabase noteStorage = this.getWritableDatabase();
+        noteStorage.delete(DATABASE_NAME, COL_ID + "=?",
+                new String[] {String.valueOf(noteid)});
+        //completing and closing the database
+        noteStorage.close();
+    }
+
 }
