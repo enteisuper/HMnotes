@@ -8,15 +8,19 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Calendar;
 
 public class HMnoteModify extends AppCompatActivity {
     Toolbar topBar;
     EditText textSubject;
     EditText textBody;
-    long noteID
+    long noteID;
 
 
     @Override
@@ -72,7 +76,31 @@ public class HMnoteModify extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
-        if (menuItem.getItemId() == R.id.)
+        //initializing date and time
+        String date = Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + ", " +
+                Calendar.getInstance().get(Calendar.MONTH) + ", " +
+                Calendar.getInstance().get(Calendar.YEAR);
+
+        String time = Calendar.getInstance().get(Calendar.HOUR) + " : " +
+                Calendar.getInstance().get(Calendar.MINUTE) + ". ";
+
+        if (menuItem.getItemId() == R.id.addNote) {
+            HMnoteObject object = new HMnoteObject(noteID, textSubject.getText().toString(),
+                    textBody.getText().toString(), date, time);
+            HMnoteStorage noteStorage = new HMnoteStorage(getApplicationContext());
+
+            //going back to main layout
+            Intent intent = new Intent(this, HMnoteActivity.class);
+            startActivity(intent);
+        }   else if (menuItem.getItemId() == R.id.deleteNote) {
+            //if delete button is pressed
+            Toast.makeText(this, "Note Deleted", Toast.LENGTH_LONG).show();
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(menuItem);
+
     }
+
+
 
 }

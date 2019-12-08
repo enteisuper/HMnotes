@@ -37,7 +37,9 @@ public class HMnoteAdapter extends RecyclerView.Adapter {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(view.getContext(), HMnoteBody)
+                    Intent intent = new Intent(view.getContext(), HMnoteModify.class);
+                    intent.putExtra("ID", notes.get(getAdapterPosition()).getId());
+                    view.getContext().startActivity(intent);
                 }
             });
         }
@@ -53,17 +55,20 @@ public class HMnoteAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewTitleDates holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        //recast so parameters can be used
+        ViewTitleDates titleDates = (ViewTitleDates) holder;
+
         String subject = notes.get(position).getSubject();
         String createDate= notes.get(position).getCreateDate();
         long noteid = notes.get(position).getId();
 
-        holder.textDate.setText(createDate);
-        holder.textSubject.setText(subject);
+        titleDates.textDate.setText(createDate);
+        titleDates.textSubject.setText(subject);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return notes.size();
     }
 }
