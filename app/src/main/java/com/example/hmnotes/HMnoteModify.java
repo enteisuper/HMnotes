@@ -26,6 +26,7 @@ public class HMnoteModify extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle saveState) {
         super.onCreate(saveState);
+        System.out.println("made it");
         setContentView(R.layout.note_modify);
         topBar = findViewById(R.id.topBar);
         setSupportActionBar(topBar);

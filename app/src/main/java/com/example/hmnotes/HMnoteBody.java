@@ -66,7 +66,7 @@ public class HMnoteBody extends AppCompatActivity {
     //if edit note button is pressed
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         if (menuItem.getItemId() == R.id.editNote) {
-            Intent intent = new Intent(this, CreateNewNoteActivity.class);
+            Intent intent = new Intent(this, HMnoteModify.class);
             intent.putExtra("noteid", noteid);
             startActivity(intent);
         }
