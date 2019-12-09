@@ -5,6 +5,9 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -101,6 +104,13 @@ public class URLJsonTask extends AsyncTask<String, String, String> {
             progressDialog.dismiss();
         }
         System.out.println("RESULT ====== " + result);
-        HMnoteActivity.weatherBar.setText(result);
+        JsonParser parser = new JsonParser();
+        JsonObject obj = (JsonObject) parser.parse(result);
+        JsonObject weather = obj.get("main").getAsJsonObject();
+        double temp = weather.get("temp").getAsDouble();
+        int fahrenheit = (int) Math.floor(((temp - 273.15) * 9 / 5) + 32);
+        int humidity = (int) Math.floor(weather.get("humidity").getAsDouble());
+        HMnoteActivity.weatherBar.setText("curr temp = " + fahrenheit +
+                "F : humidity = " + humidity + "%");
     }
 }
