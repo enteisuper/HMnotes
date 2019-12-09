@@ -8,24 +8,27 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/noteBody"
-        android:layout_width="371dp"
-        android:layout_height="34dp"
+        android:id="@+id/noteSubject"
+        android:layout_width="347dp"
+        android:layout_height="46dp"
         android:text="Type Something In"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="#030000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/noteBody"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/noteSubject"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/noteSubject"
-        android:layout_width="354dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="132dp"
-        android:text="Type Something In"
+        android:id="@+id/noteBody"
+        android:layout_width="345dp"
+        android:layout_height="355dp"
+        android:layout_marginBottom="172dp"
+        android:text="empty"
+        android:textColor="#130101"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -92,7 +92,7 @@ public class CreateNewNoteActivity extends AppCompatActivity {
             //making sure there is something to add
             if (noteSubject.getText().length() > 0) {
                 HMnoteObject newNote = new HMnoteObject(noteSubject.getText().toString(),
-                        noteSubject.getText().toString(), date, time);
+                        noteBody.getText().toString(), date, time);
                 HMnoteStorage noteStorage = new HMnoteStorage(this);
                 long noteid = noteStorage.writeNote(newNote);
                 HMnoteObject object = noteStorage.getNoteByID(noteid);
