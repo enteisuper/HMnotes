@@ -35,8 +35,13 @@ public class HMnoteBody extends AppCompatActivity {
 
         //getSupportActionBar().setTitle(object.getSubject());
 
+        //detail
         TextView noteBody = findViewById(R.id.noteBody);
         noteBody.setText(object.getDetail());
+        //subject
+        TextView noteSubject = findViewById(R.id.noteSubject);
+        noteSubject.setText(object.getSubject());
+
         //details can be scrolled through if it's too long
         noteBody.setMovementMethod(new ScrollingMovementMethod());
 
