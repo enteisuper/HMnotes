@@ -7,7 +7,7 @@
     tools:context=".HMnoteActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/topBar"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
         android:background="#000785"
@@ -39,7 +39,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/titleList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/topBar" />
 
     <TextView
         android:id="@+id/weatherBar"

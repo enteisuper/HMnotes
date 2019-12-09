@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import com.google.gson.JsonArray;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,7 +34,7 @@ public class HMnoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //declaring layout components
-        topBar = findViewById(R.id.toolbar);
+        topBar = findViewById(R.id.topBar);
         //setSupportActionBar(topBar);
         titeListView = findViewById(R.id.titleList);
         TextView emptyText = findViewById(R.id.emptyText);
@@ -48,6 +51,30 @@ public class HMnoteActivity extends AppCompatActivity {
 
 
         weatherBar = findViewById(R.id.weatherBar);
+    }
+
+
+
+
+    public void displayWeatherBar() {
+
+        /*WebApi.startRequest(this,
+                "https://samples.openweathermap.org/data/2.5/weather?zip=61801%2Cus&appid=b6907d289e10d714a6e88b30761fae22",
+                response -> {
+                    System.out.println(response);
+                    JsonArray gameList = (JsonArray) response.get("games");
+//                    Iterator iter = gameList.iterator();
+//                    FirebaseUser loginUser = FirebaseAuth.getInstance().getCurrentUser();
+//                    String loginUserEmail = loginUser.getEmail();
+//                    //defining invitations and resetting dynamic views to be empty
+//                    LinearLayout invitationsListParent = findViewById(R.id.invitationsList);
+//                    invitationsListParent.removeAllViews();
+//                    //defining ongoing games and resetting dynamic views to be empty
+//                    LinearLayout ongoingGamesList = findViewById(R.id.ongoingGamesList);
+//                    ongoingGamesList.removeAllViews();
+                }, error -> {
+                    System.out.println("not correct input");
+            }); */
     }
 
     public void showList(List<HMnoteObject> noteList) {
