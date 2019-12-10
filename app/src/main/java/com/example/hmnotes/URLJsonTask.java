@@ -108,6 +108,7 @@ public class URLJsonTask extends AsyncTask<String, String, String> {
         JsonObject obj = (JsonObject) parser.parse(result);
         JsonObject weather = obj.get("main").getAsJsonObject();
         double temp = weather.get("temp").getAsDouble();
+        //rounded down
         int fahrenheit = (int) Math.floor(((temp - 273.15) * 9 / 5) + 32);
         int humidity = (int) Math.floor(weather.get("humidity").getAsDouble());
         HMnoteActivity.weatherBar.setText("curr temp = " + fahrenheit +
